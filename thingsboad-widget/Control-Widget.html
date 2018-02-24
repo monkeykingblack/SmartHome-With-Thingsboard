@@ -1,0 +1,32 @@
+<div class="panel" style="height: 100%;">
+    <section flex layout="column" ng-repeat="row in columns">
+        <section flex layout="row"  layout-align="start center">
+            <md-button 
+                class="btn green" 
+                ng-click = "setThreshold($event,row)"
+                style="margin-left:2%"
+            >
+                Set
+            </md-button>
+            <input class="inputStyle" ng-model="row.threshold" required min="0" max="999" type="number" value="{{row.threshold}}">
+            <div class="labelStyle">
+                <span>
+                    {{row.label}}
+                </span>
+            </div>
+            <md-button 
+                class="btn green" 
+                ng-click="ctrlDevice($event, 'On', row)"
+            >
+                On
+            </md-button>
+            <md-button 
+                class="btn green"
+                ng-click="ctrlDevice($event, 'Off', row)"
+                style="margin-right:2%"
+            >
+                Off
+            </md-button>
+        </section>
+    </section>                            
+</div>

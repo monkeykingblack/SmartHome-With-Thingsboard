@@ -1,0 +1,37 @@
+{
+    "schema": {
+        "type": "object",
+        "title": "Settings",
+        "properties": {
+            "devicesList": {
+                "title": "Devices List",
+                "type": "array",
+                "minItems" : 1,
+                "items": {
+                    "title": "Control Panel",
+                    "type": "object",
+                    "properties": {
+                        "label": {
+                            "title": "Label",
+                            "type": "string"
+                        },
+                        "threshold":{
+                            "title":"Threshold",
+                            "type":"number",
+                            "default":50
+                        }
+                    },
+                    "required": ["label"]
+                }
+            }
+        },
+        "required": ["devicesList"]
+    },
+    "form": [
+        {
+            "key": "devicesList",
+            "items": ["devicesList[].label"]
+        },
+        "requestTimeout"
+    ]
+}
