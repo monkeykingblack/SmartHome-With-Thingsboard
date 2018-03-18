@@ -12,7 +12,7 @@ INTERVAL = 2
 count = 5
 
 threshold = {'Temperature':70, 'Humidity':70, 'Gas':70, 'Soil moisture': 70}
-status = {'Temperature': False, 'Humidity': False,'Gas':0, 'Soil moisture':0}
+status = {'Temperature': False, 'Humidity': False,'Gas':False, 'Soil moisture':False}
 sensor_data = {'Temperature':0, 'Humidity':0, 'Gas': 0, 'Soil moisture':0}
 
 next_reading = time.time()
