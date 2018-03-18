@@ -11,9 +11,9 @@ ACCESS_TOKEN = 'DHT11_DEMO_TOKEN'
 INTERVAL = 2
 count = 5
 
-threshold = {'Temperature':70, 'Humidity':70}
-status = {'Temperature': False, 'Humidity': False}
-sensor_data = {'Temperature':0, 'Humidity':0}
+threshold = {'Temperature':70, 'Humidity':70, 'Gas':70, 'Soil moisture': 70}
+status = {'Temperature': False, 'Humidity': False,'Gas':0, 'Soil moisture':0}
+sensor_data = {'Temperature':0, 'Humidity':0, 'Gas': 0, 'Soil moisture':0}
 
 next_reading = time.time()
 payload = [0x00, 0xFF, 0, 0,  0, 0x01]
@@ -21,7 +21,9 @@ payload = [0x00, 0xFF, 0, 0,  0, 0x01]
 def y(x):
     return{
         'Temperature': 0xAA,
-        'Humidity': 0xAB
+        'Humidity': 0xAB,
+        'Gas': 0xAC,
+        'Soil moisture': 0xAD,
     }[x]
 
 def sendPayload(label, state):
@@ -65,6 +67,8 @@ def f(x):
     return{
         'AA': 'Temperature',
         'AB': 'Humidity',
+        'AC': 'Gas',
+        'AD': 'Soil moisture'
     }[x]
 
 def upload_data(s):

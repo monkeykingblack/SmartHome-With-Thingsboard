@@ -4,6 +4,8 @@
 
 #define DHTTYPE DHT22
 #define DHTPIN 4
+#define MQ2_SENSOR A0
+#define SM_SENSOR A1
 
 DHT dht(DHTPIN,DHTTYPE);
 SoftwareSerial ser(2,3);
@@ -21,6 +23,8 @@ void setup() {
   dht.begin();
   ser.begin(9600);
   inputString.reserve(200);
+  pinMode(MQ2_SENSOR, INPUT);
+  pinMode(SM_SENSOR, INPUT);
 }
   
 void loop() {
@@ -30,10 +34,17 @@ void loop() {
   char s[6];
   float t = dht.readTemperature();
   float h = dht.readHumidity();
+  int mq2 = analogRead(A0);
+  int sm = analogRead(A1);
   sendPayload(0xAA, t);
   delay(2000);
   sendPayload(0xAB, h);
   delay(2000);
+  sendPayload(0xAC, mq2);
+  delay(2000);
+  sendPayload(0xAD, sm);
+
+  
   while (ser.available()) {
     if(ser.available()>0){
       char inChar = (char)ser.read();
