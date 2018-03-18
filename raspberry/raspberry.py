@@ -21,7 +21,9 @@ payload = [0x00, 0xFF, 0, 0,  0, 0x01]
 def y(x):
     return{
         'Temperature': 0xAA,
-        'Humidity': 0xAB
+        'Humidity': 0xAB,
+        'Gas': 0xAC,
+        'Soil moisture': 0xAD,
     }[x]
 
 def sendPayload(label, state):
@@ -65,6 +67,8 @@ def f(x):
     return{
         'AA': 'Temperature',
         'AB': 'Humidity',
+        'AC': 'Gas',
+        'AD': 'Soil moisture'
     }[x]
 
 def upload_data(s):
