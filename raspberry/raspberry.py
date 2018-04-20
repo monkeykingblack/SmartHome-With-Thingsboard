@@ -5,15 +5,15 @@ from struct import unpack
 from binascii import unhexlify
 from ctypes import *
 
-THINGSBOARD_HOST = 'localhost'
-ACCESS_TOKEN = 'DHT11_DEMO_TOKEN'
+THINGSBOARD_HOST = '192.168.1.119'
+ACCESS_TOKEN = 'LXTSA5Xcnld43b2fMXsG'
 
 INTERVAL = 2
 count = 5
 
-threshold = {'Temperature':70, 'Humidity':70, 'Gas':70, 'Soil moisture': 70}
-status = {'Temperature': False, 'Humidity': False,'Gas':False, 'Soil moisture':False}
-sensor_data = {'Temperature':0, 'Humidity':0, 'Gas': 0, 'Soil moisture':0}
+threshold = {'Temperature':70, 'Humidity':70, 'Gas':70, 'Light':0}
+status = {'Temperature': False, 'Humidity': False,'Gas':False, 'Light':False}
+sensor_data = {'Temperature':0, 'Humidity':0, 'Gas': 0, 'Light':0}
 
 next_reading = time.time()
 payload = [0x00, 0xFF, 0, 0,  0, 0x01]
@@ -23,7 +23,7 @@ def y(x):
         'Temperature': 0xAA,
         'Humidity': 0xAB,
         'Gas': 0xAC,
-        'Soil moisture': 0xAD,
+        'Light': 0xAD,
     }[x]
 
 def sendPayload(label, state):
@@ -68,7 +68,7 @@ def f(x):
         'AA': 'Temperature',
         'AB': 'Humidity',
         'AC': 'Gas',
-        'AD': 'Soil moisture'
+        'AD': 'Light'
     }[x]
 
 def upload_data(s):
